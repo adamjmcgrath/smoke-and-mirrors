@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-7">
+          {{!- BEGIN-SNIPPET flexible-layout-example }}
+          {{#if show}}
+            <div class="table-wrapper">
+              {{#vertical-collection
+                content=model
+                defaultHeight=20
+                alwaysUseDefaultHeight=false
+                visibleBuffer=2
+                useContentProxy=false
+                lastReached="lastReached"
+                as |item|
+              }}
+                <div style="height: {{item.height}}">{{item.name}}</div>
+              {{/vertical-collection}}
+            </div>
+          {{/if}}
+          {{!- END-SNIPPET }}
+        </div>
+        <div class="col-sm-5">
+            <h3>Scenarios</h3>
+            <p>
+                <button {{action "redraw"}}>Redraw</button>
+            </p>
+            <p>
+                <button {{action "resetModel"}}>Reset model</button>
+            </p>
+        </div>
+    </div>
+</div>
