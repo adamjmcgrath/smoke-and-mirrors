@@ -1,9 +1,6 @@
 import Geography from './geography';
 import VirtualElement from './element';
-import FastArray from 'perf-primitives/fast-array';
 import noop from '../utils/noop-fn';
-
-const SAT_POOL = new FastArray(200, 'Satellite Pool');
 
 export default class Satellite {
 
@@ -109,19 +106,10 @@ export default class Satellite {
   }
 
   static create(options) {
-    let sat = SAT_POOL.pop();
-
-    if (sat) {
-      sat.init(options);
-      return sat;
-    }
-
     return new Satellite(options);
   }
 
   destroy() {
     this._destroy();
-
-    SAT_POOL.push(this);
   }
 }

@@ -1,9 +1,3 @@
-import FastArray from 'perf-primitives/fast-array';
-
-const ELEMENT_POOL = new FastArray(200, 'Element Pool');
-const STYLE_POOL = new FastArray(200, 'Style Pool');
-const RECT_POOL = new FastArray(200, 'Rect Pool');
-
 export const LayoutProps = [
   'position',
   'box-sizing',
@@ -45,13 +39,6 @@ export class Style {
   }
 
   static create(values) {
-    let po = STYLE_POOL.pop();
-
-    if (po) {
-      po.init(values);
-      return po;
-    }
-
     return new Style(values);
   }
 
@@ -59,8 +46,6 @@ export class Style {
     for (let i = 0; i < LayoutProps.length; i++) {
       this[LayoutProps[i]] = undefined;
     }
-
-    STYLE_POOL.push(this);
   }
 }
 
@@ -85,13 +70,6 @@ export class Rect {
   }
 
   static create(values) {
-    let po = RECT_POOL.pop();
-
-    if (po) {
-      po.init(values);
-      return po;
-    }
-
     return new Rect(values);
   }
 
@@ -99,8 +77,6 @@ export class Rect {
     for (let i = 0; i < RECT_PROPS.length; i++) {
       this[RECT_PROPS[i]] = undefined;
     }
-
-    RECT_POOL.push(this);
   }
 }
 
@@ -146,13 +122,6 @@ export default class VirtualElement {
   }
 
   static create(styles, element) {
-    let po = ELEMENT_POOL.pop();
-
-    if (po) {
-      po.init(styles, element);
-      return po;
-    }
-
     return new VirtualElement(styles, element);
   }
 
@@ -160,8 +129,6 @@ export default class VirtualElement {
     this.element = undefined;
     this.style = undefined;
     this.rect = undefined;
-
-    ELEMENT_POOL.push(this);
   }
 
 }
