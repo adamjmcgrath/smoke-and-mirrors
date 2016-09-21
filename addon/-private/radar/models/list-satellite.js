@@ -1,6 +1,4 @@
 import Satellite from './satellite';
-import FastArray from 'perf-primitives/fast-array';
-const LIST_SAT_POOL = new FastArray(200, 'ListSatellite Pool');
 
 export default class ListSatellite extends Satellite {
 
@@ -21,19 +19,10 @@ export default class ListSatellite extends Satellite {
   }
 
   static create(options) {
-    let sat = LIST_SAT_POOL.pop();
-
-    if (sat) {
-      sat.init(options);
-      return sat;
-    }
-
     return new ListSatellite(options);
   }
 
   destroy() {
     this._destroy();
-
-    LIST_SAT_POOL.push(this);
   }
 }

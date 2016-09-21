@@ -15,6 +15,7 @@ Router.map(function() {
     this.route('html-gl');
     this.route('large-grid');
     this.route('reduce-debug');
+    this.route('redraw');
   });
 
   this.route('mixins', function() {
