@@ -1,6 +1,6 @@
 import EmptyObject from '../ember/empty-object';
 
-const MAX_ARRAY_SIZE = 200;
+const MAX_ARRAY_SIZE = 400;
 
 export default class CacheList {
 
