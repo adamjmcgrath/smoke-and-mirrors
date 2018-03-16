@@ -842,8 +842,8 @@ const VerticalCollection = Component.extend({
   },
 
   _didReceiveAttrs(attrs) {
-    const oldArray = attrs.oldAttrs && attrs.oldAttrs.content ? attrs.oldAttrs.content.value : false;
-    const newArray = attrs.newAttrs && attrs.newAttrs.content ? attrs.newAttrs.content.value : false;
+    const oldArray = attrs && attrs.oldAttrs && attrs.oldAttrs.content ? attrs.oldAttrs.content.value : false;
+    const newArray = attrs && attrs.newAttrs && attrs.newAttrs.content ? attrs.newAttrs.content.value : false;
 
     if (oldArray && newArray && this._changeIsPrepend(oldArray, newArray)) {
       this.__prependComponents();
