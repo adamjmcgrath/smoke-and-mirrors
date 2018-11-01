@@ -339,7 +339,9 @@ const VerticalCollection = Component.extend({
     // this MUST be async or glimmer will freak
     scheduler.schedule('affect', () => {
       setTimeout(() => {
-        this.sendAction(name, context, K);
+        if (!(this.isDestroying || this.isDestroyed)) {
+          this.sendAction(name, context, K);
+        }
       });
     });
   },
